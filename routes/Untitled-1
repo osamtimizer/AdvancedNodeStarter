@@ -1,0 +1,17 @@
+const query = Person.
+  .find({ occupation: /host/ })
+  .where('name.last').equals('Ghost')
+  .where('age').gt(17).lt(66)
+  .where('likes').in(['vaporizing', 'talking'])
+  .limit(10)
+  .sort('-occupation')
+  .select('name occupation');
+
+///returns one object 
+query.getOptions();
+//we can fetch these kind of object, then convert this obj to json,
+//afterwards we can store this query as query key.
+{ find: { occupation: 'host'}, where: ...}
+
+// CHECK TO SEE IF THIS QUERY HAS ALREADY BEEN FETCHED IN REDIS
+query.exec();
